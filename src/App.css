@@ -1,0 +1,145 @@
+html, body {
+  height: 100%;
+}
+
+.container {
+  background-color: rgba(224, 197, 197, 0.493) !important;
+}
+
+.title {
+  margin-bottom: 40px !important;
+  color: #00b89c !important;
+}
+
+p {
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+}
+
+.content > * {
+  margin-bottom: 50px !important;
+}
+
+.file, .selectImgYourself {
+  margin-bottom: 35px !important;
+}
+
+.field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Default styles */
+.image img {
+  width: 85%;
+  height: auto;
+  border: 3px solid #00b89c;
+}
+
+/* Media query for screens up to 600px */
+@media (max-width: 600px) {
+  .image img {
+      width: 85%;
+      height: auto;
+  }
+  .control {
+    width: 85% !important;
+  }
+}
+
+/* Media query for screens up to 900px */
+@media (min-width: 601px) and (max-width: 900px) {
+  .image img {
+      width: 75%;
+      height: auto;
+  }
+  .control {
+    width: 75% !important;
+  }
+}
+
+/* Media query for screens up to 1024px */
+@media (min-width: 901px) and (max-width: 1024px) {
+  .image img {
+      width: 700px;
+      height: auto;
+  }
+  .control {
+    width: 700px !important;
+  }
+}
+
+/* Media query for screens beyond 1024px */
+@media (min-width: 1025px) {
+  .image img {
+      width: 500px;
+      height: auto;
+  }
+  .control {
+    width: 500px !important;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button.is-primary.is-fullwidth {
+  width: 200px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.loading {
+  --d:40px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  color: #00b89c;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  box-shadow: 
+    calc(1*var(--d))      calc(0*var(--d))     0 0,
+    calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+    calc(0*var(--d))      calc(1*var(--d))     0 2px,
+    calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+    calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+    calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+    calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+  animation: l27 1s infinite steps(8);
+}
+@keyframes l27 {
+  100% {transform: rotate(1turn)}
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+  flex-direction: column;
+}
+
+.loading-container p {
+  color: #00b89c;
+  font-size: 2rem !important;
+  animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
