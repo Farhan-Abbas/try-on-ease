@@ -7,6 +7,7 @@ import garmentImagePlaceholder from "./assets/81iB1a1+mWL._AC_UY1000_.jpg";
 
 function App() {
 	const [garmentImage, setGarmentImage] = useState(garmentImagePlaceholder);
+	const [bodyImage, setBodyImage] = useState(bodyImagePlaceholder);
 	useEffect(() => {
 		// display the selected image of the user body in the browser.
 		const fileInput = document.getElementById("fileInput");
@@ -19,6 +20,7 @@ function App() {
 				const reader = new FileReader();
 				reader.onload = (e) => {
 					bodyImage.src = e.target.result;
+					setBodyImage(e.target.result);
 				};
 				reader.readAsDataURL(file);
 			}
@@ -75,7 +77,7 @@ function App() {
 				</div>
 				<p className="subtitle is-5">Your Selected Image</p>
 				<figure className="image">
-					<img id="bodyImage" alt="User Body" src={bodyImagePlaceholder} />
+					<img id="bodyImage" alt="User Body" src={bodyImage} />
 				</figure>
 				<p className="subtitle is-5">Paste a Photo Of a Garment Below</p>
 				<div className="field">
@@ -99,7 +101,7 @@ function App() {
 					<button
 						className="button is-primary is-fullwidth"
 						onClick={() =>
-							generateImageComponent(bodyImagePlaceholder, garmentImage)
+							generateImageComponent(bodyImage, garmentImage)
 						}
 					>
 						Try It On Yourself!
