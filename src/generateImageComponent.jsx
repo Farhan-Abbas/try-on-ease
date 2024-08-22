@@ -49,6 +49,7 @@ export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
     const handleGenerateImage = async () => {
 		let generatedImgDiv = document.getElementsByClassName("generated-image-container")[0];
 		generatedImgDiv.style.display = "none";
+		
 		let loader = document.getElementsByClassName("loading-container")[0];
 
 		loader.style.display = "flex";
