@@ -47,6 +47,8 @@ async function file(url) {
 export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
     let response = "";
     const handleGenerateImage = async () => {
+		let generatedImgDiv = document.getElementsByClassName("generated-image-container")[0];
+		generatedImgDiv.style.display = "none";
 		let loader = document.getElementsByClassName("loading-container")[0];
 
 		loader.style.display = "flex";
@@ -61,7 +63,6 @@ export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
 		if (response[0] === "success") {
 			let resultImg = document.getElementById("resultImage");
 			resultImg.src = response[1];
-			let generatedImgDiv = document.getElementsByClassName("generated-image-container")[0];
 			generatedImgDiv.style.display = "block";
 			let errorMsg = document.getElementsByClassName("error-msg")[0];
 			errorMsg.style.display = "none";
