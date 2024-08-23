@@ -49,7 +49,9 @@ export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
     const handleGenerateImage = async () => {
 		let generatedImgDiv = document.getElementsByClassName("generated-image-container")[0];
 		generatedImgDiv.style.display = "none";
-		
+		let errorMsg = document.getElementsByClassName("error-msg")[0];
+		errorMsg.style.display = "none";
+
 		let loader = document.getElementsByClassName("loading-container")[0];
 
 		loader.style.display = "flex";
@@ -65,12 +67,9 @@ export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
 			let resultImg = document.getElementById("resultImage");
 			resultImg.src = response[1];
 			generatedImgDiv.style.display = "block";
-			let errorMsg = document.getElementsByClassName("error-msg")[0];
-			errorMsg.style.display = "none";
 			window.scrollTo(0, document.body.scrollHeight);
 		}
 		else {
-			let errorMsg = document.getElementsByClassName("error-msg")[0];
 			errorMsg.style.display = "block";
 			errorMsg.innerHTML = "Error: " + response[1]["message"];
 			window.scrollTo(0, document.body.scrollHeight);
