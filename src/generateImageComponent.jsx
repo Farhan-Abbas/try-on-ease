@@ -3,6 +3,40 @@ import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client@latest/dist/
 
 // Define the generateImage function in the global scope
 async function generateImage(bodyImagePlaceholder, garmentImg) {
+	const backendEndpoint = "http://127.0.0.1:5000/api/chat";
+    try {
+        const response = await fetch(backendEndpoint, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: [bodyImagePlaceholder, garmentImg] }),
+        });
+        const text = await response.text();
+        const data = JSON.parse(text);
+        if (response.ok) {
+            console.log(data["message"]);
+            console.log("Message received successfully!");
+            return ['success', data["message"]];
+        } else {
+            console.error("Error receiving message!.");
+        }
+    } catch (error) {
+		console.error("Error sending data!", error);
+		return ['failure', error];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 	try {
 		const response_0 = await fetch(garmentImg);
 		const garmentImgBlob = await response_0.blob();
