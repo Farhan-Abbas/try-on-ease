@@ -2,7 +2,7 @@
 
 // Define the generateImage function in the global scope
 async function generateImage(bodyImagePlaceholder, garmentImg) {
-	const backendEndpoint = "http://127.0.0.1:5000/api/chat";
+	const backendEndpoint = "https://try-on-ease-backend.vercel.app/";
     try {
         const response = await fetch(backendEndpoint, {
             method: "POST",
