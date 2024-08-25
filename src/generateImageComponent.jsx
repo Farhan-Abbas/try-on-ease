@@ -35,6 +35,7 @@ export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
 		let generatedImgDiv = document.getElementsByClassName("generated-image-container")[0];
 		generatedImgDiv.style.display = "none";
 		let errorMsg = document.getElementsByClassName("error-msg")[0];
+		errorMsg.innerHTML = "";
 		errorMsg.style.display = "none";
 
 		let loader = document.getElementsByClassName("loading-container")[0];
