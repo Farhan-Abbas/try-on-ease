@@ -56,7 +56,12 @@ export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
 		}
 		else {
 			errorMsg.style.display = "block";
-			errorMsg.innerHTML = "Error: " + response[1]["message"];
+			if (response[1]["message"]) {
+				errorMsg.innerHTML = "Error: " + response[1]["message"];
+			}
+			else {
+				errorMsg.innerHTML = "Error: " + response[1];
+			}
 			window.scrollTo(0, document.body.scrollHeight);
 		}
     };
