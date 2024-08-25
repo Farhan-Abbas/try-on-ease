@@ -54,30 +54,8 @@ p {
   }
 }
 
-/* Media query for screens up to 900px */
-@media (min-width: 601px) and (max-width: 900px) {
-  .image img {
-      width: 75%;
-      height: auto;
-  }
-  .control {
-    width: 75% !important;
-  }
-}
-
-/* Media query for screens up to 1024px */
-@media (min-width: 901px) and (max-width: 1024px) {
-  .image img {
-      width: 700px;
-      height: auto;
-  }
-  .control {
-    width: 700px !important;
-  }
-}
-
-/* Media query for screens beyond 1024px */
-@media (min-width: 1025px) {
+/* Media query for screens beyond 600px */
+@media (min-width: 601px) {
   .image img {
       width: 500px;
       height: auto;
