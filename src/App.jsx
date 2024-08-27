@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import "bulma/css/bulma.min.css";
 import "./App.css";
 import { generateImageComponent } from "./generateImageComponent.jsx";
-import bodyImagePlaceholder from "./assets/miler-breathable-heathered-jersey-t-shirt.jpg";
-import garmentImagePlaceholder from "./assets/81iB1a1+mWL._AC_UY1000_.jpg";
+// import bodyImagePlaceholder from "./assets/miler-breathable-heathered-jersey-t-shirt.jpg";
+// import garmentImagePlaceholder from "./assets/81iB1a1+mWL._AC_UY1000_.jpg";
 
 function App() {
-	const [garmentImage, setGarmentImage] = useState(garmentImagePlaceholder);
-	const [bodyImage, setBodyImage] = useState(bodyImagePlaceholder);
+	const [garmentImage, setGarmentImage] = useState("https://m.media-amazon.com/images/I/81iB1a1+mWL._AC_UY1000_.jpg");
+	const [bodyImage, setBodyImage] = useState("https://imagescdn.simons.ca/images/5821-2302-1-A1_2/miler-breathable-heathered-jersey-t-shirt.jpg?__=12");
 	useEffect(() => {
 		// display the selected image of the user body in the browser.
 		const fileInput = document.getElementById("fileInput");
@@ -94,7 +94,7 @@ function App() {
 					<img
 						id="pastedImage"
 						alt="Pasted Garment"
-						src={garmentImagePlaceholder}
+						src={garmentImage}
 					/>
 				</figure>
 				<div className="button-container">

@@ -2,33 +2,40 @@
 
 // Define the generateImage function in the global scope
 async function generateImage(bodyImagePlaceholder, garmentImg) {
-	const backendEndpoint = "https://try-on-ease-backend.vercel.app/api/imageGenerator";
+    const backendEndpoint = "http://127.0.0.1:5000/api/imageGenerator";
+    const requestBody = { message: [bodyImagePlaceholder, garmentImg] };
+
+    console.log("Sending request to backend with payload:", requestBody);
+
     try {
         const response = await fetch(backendEndpoint, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ message: [bodyImagePlaceholder, garmentImg] }),
+            body: JSON.stringify(requestBody),
         });
+
         const text = await response.text();
         const data = JSON.parse(text);
+
+        console.log("Response status:", response.status);
+        console.log("Response data:", data);
+
         if (response.ok) {
-			console.log("Prediction request successful!");
+            console.log("Prediction request successful!");
             console.log(data["message"][0]);
             return ['success', data["message"][0]];
         } else {
-			console.error("Prediction request failed!");
-			console.error(data["message"]);
-			return ['failure', data["message"]];
+            console.error("Prediction request failed!");
+            console.error(data["message"]);
+            return ['failure', data["message"]];
         }
     } catch (error) {
-		console.error("Error sending data!", error);
-		return ['failure', error];
+        console.error("Error sending data!", error);
+        return ['failure', error];
     }
-
 }
-
 export function generateImageComponent(bodyImagePlaceholder, garmentImg) {
     let response = "";
     const handleGenerateImage = async () => {
