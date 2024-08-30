@@ -59,7 +59,7 @@ function App() {
 		>
 			<div className="content has-text-centered">
 				<h1 className="title is-1 has-text-primary">
-					<u>TryOnEase</u>
+					<u>Virtual-Try-On</u>
 				</h1>
 				<p className="subtitle is-5 selectImgYourself">Select an Image of Yourself Below</p>
 				<div className="file is-centered mb-4">
