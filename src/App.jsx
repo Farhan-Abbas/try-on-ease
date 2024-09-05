@@ -16,14 +16,8 @@ function App() {
 		const isTouchDevice =
 			"ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-		if (isTouchDevice) {
-			if (/android/i.test(userAgent)) {
-				setIsMobileOrTablet(true);
-			} else if (/iPad|iPhone/.test(userAgent) && !window.MSStream) {
-				setIsMobileOrTablet(true);
-			} else if (/windows phone/i.test(userAgent)) {
-				setIsMobileOrTablet(true);
-			}
+		if (isTouchDevice && (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent))) {
+			setIsMobileOrTablet(true);
 		}
 	}, []);
 
