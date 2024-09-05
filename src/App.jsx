@@ -8,9 +8,25 @@ import garmentImagePlaceholder from "./assets/81iB1a1+mWL._AC_UY1000_.jpg";
 function App() {
 	const [garmentImage, setGarmentImage] = useState(garmentImagePlaceholder);
 	const [bodyImage, setBodyImage] = useState(bodyImagePlaceholder);
+	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
 	useEffect(() => {
-		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	  const userAgent = navigator.userAgent || window.opera;
+	  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+	
+	  if (isTouchDevice) {
+		if (/android/i.test(userAgent)) {
+		  setIsMobileOrTablet(true);
+		} else if (/iPad|iPhone/.test(userAgent) && !window.MSStream) {
+		  setIsMobileOrTablet(true);
+		} else if (/windows phone/i.test(userAgent)) {
+		  setIsMobileOrTablet(true);
+		}
+	  }
+	}, []);
+
+	useEffect(() => {
+		if (isMobileOrTablet) {
 			document.getElementById("mobileWarning").style.display = "block";
 		}
 
