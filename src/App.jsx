@@ -16,7 +16,7 @@ function App() {
 		const isTouchDevice =
 			"ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-		if (isTouchDevice && (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent))) {
+		if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent))) {
 			setIsMobileOrTablet(true);
 		}
 	}, []);
