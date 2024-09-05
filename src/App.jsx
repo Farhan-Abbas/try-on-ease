@@ -11,25 +11,28 @@ function App() {
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
 	useEffect(() => {
-	  const userAgent = navigator.userAgent || window.opera;
-	  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-	
-	  if (isTouchDevice) {
-		if (/android/i.test(userAgent)) {
-		  setIsMobileOrTablet(true);
-		} else if (/iPad|iPhone/.test(userAgent) && !window.MSStream) {
-		  setIsMobileOrTablet(true);
-		} else if (/windows phone/i.test(userAgent)) {
-		  setIsMobileOrTablet(true);
+		const userAgent = navigator.userAgent || window.opera;
+		const isTouchDevice =
+			"ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+		if (isTouchDevice) {
+			if (/android/i.test(userAgent)) {
+				setIsMobileOrTablet(true);
+			} else if (/iPad|iPhone/.test(userAgent) && !window.MSStream) {
+				setIsMobileOrTablet(true);
+			} else if (/windows phone/i.test(userAgent)) {
+				setIsMobileOrTablet(true);
+			}
 		}
-	  }
 	}, []);
 
 	useEffect(() => {
 		if (isMobileOrTablet) {
 			document.getElementById("mobileWarning").style.display = "block";
 		}
+	}, [isMobileOrTablet]);
 
+	useEffect(() => {
 		// display the selected image of the user body in the browser.
 		const fileInput = document.getElementById("fileInput");
 		const bodyImage = document.getElementById("bodyImage");
@@ -73,11 +76,22 @@ function App() {
 		}
 	});
 
+	const closeModal = () => {
+		document.getElementById("mobileWarning").style.display = "none";
+	};
+
 	return (
 		<div>
-			<div id="mobileWarning">
-				This website is currently for desktop use only. Please use a desktop
-				device to access this website.
+			<div id="mobileWarning" className="modal">
+				<div className="modal-content">
+					<span className="close" onClick={closeModal}>
+						&times;
+					</span>
+					<p>
+						This website is currently for desktop use only. Please use a desktop
+						device to access this website.
+					</p>
+				</div>
 			</div>
 			<div
 				className="container is-fluid"
