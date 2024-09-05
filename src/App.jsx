@@ -11,14 +11,18 @@ function App() {
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
 	useEffect(() => {
-		const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	  const userAgent = navigator.userAgent || window.opera;
+	  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+	
+	  if (isTouchDevice) {
 		if (/android/i.test(userAgent)) {
-			setIsMobileOrTablet(true);
+		  setIsMobileOrTablet(true);
 		} else if (/iPad|iPhone/.test(userAgent) && !window.MSStream) {
-			setIsMobileOrTablet(true);
+		  setIsMobileOrTablet(true);
 		} else if (/windows phone/i.test(userAgent)) {
-			setIsMobileOrTablet(true);
+		  setIsMobileOrTablet(true);
 		}
+	  }
 	}, []);
 
 	useEffect(() => {
