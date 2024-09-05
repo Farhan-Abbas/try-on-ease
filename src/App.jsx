@@ -13,10 +13,7 @@ function App() {
 
 	useEffect(() => {
 		const userAgent = navigator.userAgent || window.opera;
-		const isTouchDevice =
-			"ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-		if ((/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent))) {
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
 			setIsMobileOrTablet(true);
 		}
 	}, []);
