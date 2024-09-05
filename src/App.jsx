@@ -14,7 +14,7 @@ function App() {
 		const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 		if (/android/i.test(userAgent)) {
 			setIsMobileOrTablet(true);
-		} else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+		} else if (/iPad|iPhone/.test(userAgent) && !window.MSStream) {
 			setIsMobileOrTablet(true);
 		} else if (/windows phone/i.test(userAgent)) {
 			setIsMobileOrTablet(true);
