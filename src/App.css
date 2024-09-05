@@ -121,3 +121,16 @@ p {
     opacity: 1;
   }
 }
+
+#mobileWarning {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 1.2rem;
+  background: #ff0000;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
+}

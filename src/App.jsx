@@ -8,7 +8,21 @@ import garmentImagePlaceholder from "./assets/81iB1a1+mWL._AC_UY1000_.jpg";
 function App() {
 	const [garmentImage, setGarmentImage] = useState(garmentImagePlaceholder);
 	const [bodyImage, setBodyImage] = useState(bodyImagePlaceholder);
+	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	if (/android/i.test(userAgent)) {
+	  setIsMobileOrTablet(true);
+	} else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+	  setIsMobileOrTablet(true);
+	} else if (/windows phone/i.test(userAgent)) {
+	  setIsMobileOrTablet(true);
+	}
+	
 	useEffect(() => {
+		if (isMobileOrTablet) {
+			document.getElementById("mobileWarning").style.display = "block";
+		}
+
 		// display the selected image of the user body in the browser.
 		const fileInput = document.getElementById("fileInput");
 		const bodyImage = document.getElementById("bodyImage");
@@ -43,7 +57,7 @@ function App() {
 				if (blob !== null) {
 					var reader = new FileReader();
 					reader.onload = function (event) {
-            			setGarmentImage(event.target.result);
+						setGarmentImage(event.target.result);
 						document.getElementById("pastedImage").src = event.target.result;
 					};
 					reader.readAsDataURL(blob);
@@ -53,78 +67,84 @@ function App() {
 	});
 
 	return (
-		<div
-			className="container is-fluid"
-			style={{ padding: "20px", backgroundColor: "white" }}
-		>
-			<div className="content has-text-centered">
-				<h1 className="title is-1 has-text-primary">
-					<u>Virtual-Try-On</u>
-				</h1>
-				<p className="subtitle is-5 selectImgYourself">Select an Image of Yourself Below</p>
-				<div className="file is-centered mb-4">
-					<label className="file-label">
-						<input
-							className="file-input"
-							type="file"
-							id="fileInput"
-							accept="image/*"
-						/>
-						<span className="file-cta">
-							<span className="file-label">Choose a file…</span>
-						</span>
-					</label>
-				</div>
-				<p className="subtitle is-5">Your Selected Image</p>
-				<figure className="image">
-					<img id="bodyImage" alt="User Body" src={bodyImage} />
-				</figure>
-				<p className="subtitle is-5">Paste a Photo Of a Garment Below</p>
-				<div className="field">
-					<div className="control">
-						<textarea
-							className="textarea"
-							id="pasteArea"
-							placeholder="Paste The Image Of Your Garment Here"
-						></textarea>
+		<div>
+			<div id="mobileWarning">
+				This website is currently for desktop use only. Please use a desktop
+				device to access this website.
+			</div>
+			<div
+				className="container is-fluid"
+				style={{ padding: "20px", backgroundColor: "white" }}
+			>
+				<div className="content has-text-centered">
+					<h1 className="title is-1 has-text-primary">
+						<u>Virtual-Try-On</u>
+					</h1>
+					<p className="subtitle is-5 selectImgYourself">
+						Select an Image of Yourself Below
+					</p>
+					<div className="file is-centered mb-4">
+						<label className="file-label">
+							<input
+								className="file-input"
+								type="file"
+								id="fileInput"
+								accept="image/*"
+							/>
+							<span className="file-cta">
+								<span className="file-label">Choose a file…</span>
+							</span>
+						</label>
 					</div>
-				</div>
-				<p className="subtitle is-5">Your Selected Garment</p>
-				<figure className="image">
-					<img
-						id="pastedImage"
-						alt="Pasted Garment"
-						src={garmentImagePlaceholder}
-					/>
-				</figure>
-				<div className="button-container">
-					<button
-						className="button is-primary is-fullwidth"
-						onClick={() =>
-							generateImageComponent(bodyImage, garmentImage)
-						}
-					>
-						Try It On Yourself!
-					</button>
-				</div>
-				<div className="loading-container" style={{display: "none"}}>
-					<div className="loading"></div>
-					<p className="subtitle is-5 mt-4">
-						Loading...
-					</p>
-				</div>
-				<p className="error-msg subtitle is-5 mt-4" style={{display: "none"}}></p>
-				<div className="generated-image-container" style={{display: "none"}}>
-					<p className="subtitle is-5 mt-4">
-						Here&rsquo;s How You Would Look In This Garment
-					</p>
+					<p className="subtitle is-5">Your Selected Image</p>
+					<figure className="image">
+						<img id="bodyImage" alt="User Body" src={bodyImage} />
+					</figure>
+					<p className="subtitle is-5">Paste a Photo Of a Garment Below</p>
+					<div className="field">
+						<div className="control">
+							<textarea
+								className="textarea"
+								id="pasteArea"
+								placeholder="Paste The Image Of Your Garment Here"
+							></textarea>
+						</div>
+					</div>
+					<p className="subtitle is-5">Your Selected Garment</p>
 					<figure className="image">
 						<img
-							id="resultImage"
-							alt="Generated Image"
-							src=""
+							id="pastedImage"
+							alt="Pasted Garment"
+							src={garmentImagePlaceholder}
 						/>
 					</figure>
+					<div className="button-container">
+						<button
+							className="button is-primary is-fullwidth"
+							onClick={() => generateImageComponent(bodyImage, garmentImage)}
+						>
+							Try It On Yourself!
+						</button>
+					</div>
+					<div className="loading-container" style={{ display: "none" }}>
+						<div className="loading"></div>
+						<p className="subtitle is-5 mt-4">Loading...</p>
+					</div>
+					<p
+						className="error-msg subtitle is-5 mt-4"
+						style={{ display: "none" }}
+					></p>
+					<div
+						className="generated-image-container"
+						style={{ display: "none" }}
+					>
+						<p className="subtitle is-5 mt-4">
+							Here&rsquo;s How You Would Look In This Garment
+						</p>
+						<figure className="image">
+							<img id="resultImage" alt="Generated Image" src="" />
+						</figure>
+					</div>
 				</div>
 			</div>
 		</div>
