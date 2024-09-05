@@ -9,15 +9,18 @@ function App() {
 	const [garmentImage, setGarmentImage] = useState(garmentImagePlaceholder);
 	const [bodyImage, setBodyImage] = useState(bodyImagePlaceholder);
 	const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
-	const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-	if (/android/i.test(userAgent)) {
-	  setIsMobileOrTablet(true);
-	} else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-	  setIsMobileOrTablet(true);
-	} else if (/windows phone/i.test(userAgent)) {
-	  setIsMobileOrTablet(true);
-	}
-	
+
+	useEffect(() => {
+		const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+		if (/android/i.test(userAgent)) {
+			setIsMobileOrTablet(true);
+		} else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+			setIsMobileOrTablet(true);
+		} else if (/windows phone/i.test(userAgent)) {
+			setIsMobileOrTablet(true);
+		}
+	}, []);
+
 	useEffect(() => {
 		if (isMobileOrTablet) {
 			document.getElementById("mobileWarning").style.display = "block";
